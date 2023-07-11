@@ -1,14 +1,12 @@
+<h1 align="center"> PROYECTO INDIVIDUAL N°1 💻</h1>
+
 <p align="center">
-  <img src="src/logo_henry.png" alt="Logo">
+  <img src="src/machi.png" alt="Logo">
 </p>
 
  
-<h1 align="center"> PROYECTO INDIVIDUAL N°1 💥</h1>
-<hr>
-
- 
 <h2 align="center">Machine Learning Operations (MLOps)</h2>
-  <hr>
+
 <h3 align="center">Sistema de recomendación de películas</h3>
 
 ## Resumen 📃 
@@ -19,9 +17,11 @@ Para el cual tienes datos con 0 tratamiento ([Peliculas_Limpias.csv](https://git
 
 Por lo que es necesario realizar para este proyecto, ETL, API, EDA, deployment y un sistema de recomendaciones.
 
+Cumpliremos el Rol de <strong> Data Engnieer.
+
 </p>
 
-## Pasos del proyecto 📚
+## PROCESO
 ### 1. Extracción, Transformación, Carga ( [ ETL ](https://github.com/BryanDarce01/PI_ML_OPS/blob/master/ETL_Peliculas.ipynb))
 <p align="justify">
 
@@ -37,30 +37,27 @@ Por lo que es necesario realizar para este proyecto, ETL, API, EDA, deployment y
 
 </p>
 
-### 2. Análisis Exploratorio de Datos ( [ EDA ](https://github.com/BryanDarce01/PI_ML_OPS/blob/master/EDA.ipynb))
+### 2. Análisis Exploratorio de Datos ( [ EDA ](hhttps://github.com/ayhovi/Proyecto_01/blob/master/EDA.ipynb))
 
 <p align="justify">
-  En en este paso se exploran y visualizan los datos para tener un mejor entendimiento de la información que contiene el set de datos con el que se va a trabajar posteriormente.
+  Los datos ya estaban limpios, así que fue el momento de investigar las relaciones entre las variables de los conjuntos de datos. Busqué outliers o anomalías (que no necesariamente eran errores) ví si había algún patrón interesante que valiera la pena explorar en un análisis posterior. Las nubes de palabras proporcionaron una buena idea de qué palabras eran más frecuentes en los títulos, lo que podría ayudar al sistema de recomendación.
 
 </p>
 
-###  3. Implementación de API´s ( [ Main ](https://github.com/BryanDarce01/PI_ML_OPS/blob/master/main.py))
+###  3. Implementación de API´s ( [ Main ](https://github.com/ayhovi/Proyecto_01/blob/master/main.py))
 <p align="justify">
-  En el archivo main.py se desarrolló una interfaz utilizando las bibliotecas FastAPI. Esta interfaz permite a los usuarios interactuar con el modelo de Machine Learning al proporcionar los datos de entrada necesarios y obtener las predicciones correspondientes. 
-
-  También se pueden realizar consultas y recibir respuestas en tiempo real a través de esta interfaz, lo que facilita la utilización y aplicación práctica del modelo desarrollado.
+  Se desarrolló una interfaz en el archivo main.py utilizando la biblioteca FastAPI. Esta interfaz permite a los usuarios interactuar con el modelo de aprendizaje automático proporcionando los datos de entrada necesarios y obteniendo las predicciones correspondientes.
 
 </p>
 
-### 4. Desarrollo del Modelo de Machine Learning ( [ Main ](https://github.com/BryanDarce01/PI_ML_OPS/blob/master/main.py))
+### 4. Desarrollo del Modelo de Machine Learning ( [ Main ](https://github.com/ayhovi/Proyecto_01/blob/master/main.py))
 <p align="justify">
-  Para el sistema de recomendación se implementó un modelo de Machine Learning utilizando el algoritmo de similitud de cosenos. 
+  Se implementó un modelo de aprendizaje automático utilizando el algoritmo de similitud coseno para el sistema de recomendación.
+Este modelo fue entrenado utilizando datos preprocesados y preparados. Una vez completado el entrenamiento, se procedió a desplegar la aplicación utilizando la plataforma <a href="https://proyecto-02-y0jy.onrender.com/">RENDER</a>
 
-  Este modelo ha sido entrenado utilizando los datos preprocesados y preparados. Una vez completado el entrenamiento, se procedió a realizar el despliegue de la aplicación utilizando la plataforma [RENDER ](https://darcemlops.onrender.com/docs). 
+El despliegue permite poner en funcionamiento el modelo y hacerlo accesible para su uso en la aplicación, proporcionando así la capacidad de realizar recomendaciones basadas en la similitud coseno de manera eficiente y efectiva.
 
-  El despliegue permite poner en funcionamiento el modelo y hacerlo accesible para su uso en la aplicación, brindando así la capacidad de realizar recomendaciones basadas en la similitud de cosenos de manera eficiente y efectiva.
-
-# Stack Tecnológico 👨‍💻
+# Tecnologias Aplicadas 💻
 <p align="justify">
   📊 **Scikit Learn**: Utilizado para vectorizar, tokenizar y calcular la similitud coseno.
 
@@ -78,11 +75,6 @@ Por lo que es necesario realizar para este proyecto, ETL, API, EDA, deployment y
 
 </p>
 
-# Recomendaciones ⚠️
-
-- Al hacer las consultas usar la primera letra de cada palabra en mayusculas.
-- No hacer uso de caracteres especiales.
-- Para la función 1. Idioma, ingresar solamente las abreviaturas (Por ejemplo: 'english' = 'en' | 'español' = 'es' | 'francés' = 'fr' )
-
-# Contacto 📱
-[Bryan Darce](https://www.linkedin.com/in/bryan-darce/)
+<p align="center">
+  <img src="src/logo_henry.png" alt="Logo">
+</p>

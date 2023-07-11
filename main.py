@@ -14,7 +14,7 @@ df = pd.read_csv('Datasets/Peliculas_Limpias.csv')
 
 @app.get("/")
 async def index ():
-    output = "¡Bienvenido a la interfaz de consultas"
+    output = "¡Bienvenido a la interfaz de consultas, inserte '/docs' para visualizar las consultas "
     return output
 
 #Se desarrollan las consutlas que fueron solicitadas por el cliente:
