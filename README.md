@@ -13,20 +13,27 @@
 
 ## Resumen 📃 
 <p align="justify">
-  El proyecto consta de dos partes principales. 
+Realizar un sistema de recomendaciones en una start-up que provee servicios de agregación de plataformas de streaming.
 
-  En la primera parte, se crea un sistema de consultas que permite obtener información relacionada con películas como por ejemplo las grabaciones, el director y otros datos de las películas consultadas, utilizando una base de datos de películas. 
+Para el cual tienes datos con 0 tratamiento ([Peliculas_Limpias.csv](https://github.com/ayhovi/Proyecto_01/blob/master/Datasets/Peliculas_Limpias.csv)), datos anidados, sin transformar, etc.
 
-  En la segunda parte, se desarrolla un sistema de recomendación de películas basado en Machine Learning. Este sistema, al recibir un título ingresado por el usuario, devuelve una lista de 5 películas similares.
+Por lo que es necesario realizar para este proyecto, ETL, API, EDA, deployment y un sistema de recomendaciones.
 
 </p>
 
 ## Pasos del proyecto 📚
 ### 1. Extracción, Transformación, Carga ( [ ETL ](https://github.com/BryanDarce01/PI_ML_OPS/blob/master/ETL_Peliculas.ipynb))
 <p align="justify">
-  Se llevó a cabo el proceso de extracción de datos, la transformación de los datos para su limpieza y la carga de los datos. 
 
-  Este archivo será utilizado posteriormente para el análisis y entrenamiento del modelo.
+* Desanidar los campos que poseen diccionarios o lista de los mismos.
+* Rellenar con el número 0 los valores nulos de los campos revenue, budget.
+* Desanidar los campos que poseen diccionarios o lista de los mismos.
+* Rellenar con el número 0 los valores nulos de los campos revenue, budget.
+* De haber fechas, deberán tener el formato.AAAA-mm-dd
+* Crear la columna release_year donde extraerán el año de la fecha de estreno.
+* Crear la columna llamada return, dividiendo los campos.revenue / budget, cuando no hay datos disponibles para calcularlo, deberá tomar el valor 0.
+* Eliminar las columnas que no serán utilizadas, video,imdb_id,adult,original_title,vote_count,poster_path y homepage.
+* Exportar CSV final con todas las transformaciones.
 
 </p>
 

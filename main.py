@@ -6,43 +6,42 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity, linear_kernel
 
 
-app = FastAPI()
+app = FastAPI(title = "Proyecto_01", description = "Proyecto_01")
 df = pd.read_csv('Datasets/Peliculas_Limpias.csv')
 
 #http://127.0.0.1:8000/
 
 
-'''
-@app.get('/prueba')
-def prueba():
-    return {'Mensaje': 'Hola'}
-'''
+@app.get("/")
+async def index ():
+    output = "¡Bienvenido a la interfaz de consultas"
+    return output
 
+#Se desarrollan las consutlas que fueron solicitadas por el cliente:
 
-# 1. 
-@app.get('/1. Idioma/{Idioma}')
+#Consulta_1
+#Se ingresa un idioma, retornando la cantidad de películas producidas en ese idioma.
+@app.get('/peliculas_idioma/{Idioma}')
 def peliculas_idioma(Idioma:str):
-    '''Se ingresa un idioma con su abreviatura y devuelve la cantidad de películas producidas en ese idioma.'''
     sacar_idioma = df[df['Idioma'] == Idioma]
     total = len(sacar_idioma)
     return {'Respuesta': f"{total} peliculas se lanzaron en {Idioma}"}
 
 
 
-# 2.
-@app.get('/2. Duracion/{Pelicula}')
+#Consulta_2
+#Se ingresa una pelicula, retornando la duracion y el año.
+@app.get('/peliculas_dia/{Pelicula}')
 def peliculas_duracion(Pelicula:str):
-    '''Se ingresa una pelicula. Debe devolver la duracion y el año.'''
     peli = df[df['Titulo'] == Pelicula].iloc[0]
     duracion = peli['Duración']
     anio = peli['Año_Lanzamiento']
     return {'Respuesta': f"{Pelicula}. Duración: {duracion}. Año: {anio}"}
 
-
-# 3.
-@app.get('/3. Franquicia/{Franquicia}')
+#Consulta_3
+#Se ingresa la franquicia, La función retornara la cantidad de peliculas, ganancia total y promedio
+@app.get('/franquicia/{Franquicia}')
 def franquicia(Franquicia: str ): 
-    '''Se ingresa la franquicia, retornando la cantidad de peliculas, ganancia total y promedio.'''
     valor_encontrado = df[df['Franquicia']==Franquicia]
     series = len(valor_encontrado)
     total = valor_encontrado['Ganancia'].sum()
@@ -54,20 +53,20 @@ def franquicia(Franquicia: str ):
             'Promedio de las Ganancias': promedio}
 
 
-# 4.
-@app.get('/4. Pais/{Pais}')
+#Consulta_4
+#Se ingresa el país, retornando la cantidad de películas producidas en el mismo
+@app.get('/peliculas_pais/{Pais}')
 def peliculas_pais( Pais: str ):
-    '''Se ingresa un país, retornando la cantidad de peliculas producidas en el mismo.'''
     film_por_pais = df[df['Pais_de_Produccion'].str.contains(Pais,na=False,case=False)]
     cant = len(film_por_pais)
     
     return {'Respuesta':f"Se produjeron {cant} películas en {Pais}"}
 
 
-# 5. 
-@app.get('/5. Productora/{Productora}')
+#Consulta_5
+#Se Ingresa la productora, retornando la ganancia total y la cantidad de películas que produjeron
+@app.get('/productoras_exitosas/{Productora}')
 def productoras_exitosas( Productora: str ):
-    '''Se ingresa la productora, entregandote el revenue total y la cantidad de peliculas que realizo.'''
     variable_productora=df[['Productora','Ganancia']].dropna()
     variable_productora['Productora']=variable_productora['Productora'].map(str.lower)
     variable_productora=variable_productora[variable_productora.Productora.str.contains(Productora.lower(), regex=False)]
@@ -78,19 +77,11 @@ def productoras_exitosas( Productora: str ):
             'y las películas que hizo fueron':cantidad}
 
 
-# 6. Se ingresa el nombre de un director que se encuentre dentro de un dataset debiendo devolver 
-# el éxito del mismo medido a través del retorno. 
-# Además, deberá devolver el nombre de cada película con la fecha de lanzamiento, 
-# retorno individual, costo y ganancia de la misma, en formato lista.
-
-@app.get('/6. Director/{Director}')
+#CONSULTA_6
+#Se ingresa el nombre de un director que se encuentre dentro de un dataset debiendo devolver el éxito del mismo medido a través del retorno. Además, deberá devolver el nombre de cada película con la fecha de lanzamiento, retorno individual, costo y ganancia de la misma, en formato lista.
+@app.get('/get_director/{Director}')
 def get_director(Director):
-    '''Se ingresa el nombre de un director y devuelve la información de cada película en la que trabajó'''
     resultado = []
-
-    # En el ciclo For, usé "_" porque no es necesario trabajar con el índice
-    # Esto evita la necesidad de trabajar con una tupla en cada iteración 
-    # y podemos acceder directamente a los valores de la serie utilizando row['Director'], row['Titulo'],
     for _, row in df.iterrows():
         director = row['Director']
         if isinstance(director, str) and Director.lower() == director.lower():
@@ -117,21 +108,14 @@ def get_director(Director):
 
 
 
-# 7. Sistema de Recomendación
-
+# Consulta_7
+# Se ingresa el nombre de una película y te recomienda las similares en una lista de 5 valores.
 @app.get("/7. Recomendacion/{Titulo}")
 def recomendacion(Titulo: str):
-    ''' Se ingresa el nombre de una película y te recomienda las similares en una lista de 5 valores.'''
     df = pd.read_csv('Datasets/Peliculas_ML.csv')
-
-    # Verificar si el título existe en el DataFrame original
     if Titulo not in df['Titulo'].values:
         return {'Respuesta': 'El título no existe en el DataFrame'}
-
-    # Reducción del tamaño del DataFrame con el título incluido
     datos_reducidos = df.head(5000)
-
-    # Verificar nuevamente si el título existe en la muestra reducida
     if Titulo not in datos_reducidos['Titulo'].values:
         return {'Respuesta': 'El título no existe en la muestra reducida'}
 
